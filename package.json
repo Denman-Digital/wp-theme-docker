@@ -1,0 +1,17 @@
+{
+    "name": "iscbc-docker",
+    "version": "1.0.0",
+    "description": "A Docker setup for ISCBC site development",
+    "scripts": {
+        "start": "docker-compose up",
+        "teardown": "docker-compose down",
+        "rebuild": "docker-compose up --force-recreate --build"
+    },
+    "author": "Paul Walton",
+    "license": "UNLICENSED",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/paulthewalton/iscbc-docker"
+    }
+}
