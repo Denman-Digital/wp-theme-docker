@@ -50,6 +50,11 @@ dev@<container id> $ wp config set WP_DEBUG false --raw
 dev@<container id> $ wp config set WP_DEBUG true --raw
 ```
 
+> **NOTE:** Actually don't use WP-CLI for this *specific* use-case, WP_DEBUG is set on the fly from the `WP_DEBUG` environment variable. Change that with
+> ```sh
+> $ $WP_DEBUG = 0 # for false, 1 for true
+> ```
+
 ### Rebuilding Containers
 
 You may find you need to rebuild your containers if things go pear-shaped:

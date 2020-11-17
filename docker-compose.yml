@@ -25,6 +25,7 @@ services:
     volumes:
       - ./docker/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./app:/var/www/html
+      - ./wp-config.php:/var/www/html/wp-config.php
     depends_on:
       - db
     links:
@@ -35,6 +36,7 @@ services:
       DB_PASSWORD: admin
       DB_HOST: db
       WP_DEBUG: 1
+      WP_DEBUG_DISPLAY: 0
       WP_TABLE_PREFIX: "wp_"
       LIVE_URL: https://project1.com
       DEV_URL: http://dev.project1.com

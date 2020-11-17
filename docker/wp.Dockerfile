@@ -16,3 +16,7 @@ ARG server_user_pwd=dev
 
 RUN useradd -ms /bin/bash $server_user
 # RUN echo "${server_user}:${server_user_pwd}" | chpasswd
+
+# RUN echo $PWD
+
+# COPY wp-config.php /var/html/www/wp-config.php
