@@ -1,4 +1,4 @@
-FROM wordpress:php7.4-apache
+FROM wordpress:php7.3-apache
 
 # Install xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
