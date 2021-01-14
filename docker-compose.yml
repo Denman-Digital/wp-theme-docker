@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:5.7
     ports:
-      - 8001:3306
+      - 8306:3306
     command: [
         '--default_authentication_plugin=mysql_native_password',
         '--character-set-server=utf8mb4',
@@ -38,7 +38,7 @@ services:
       DB_PASSWORD: admin
       DB_HOST: db
       WP_DEBUG: 1
-      WP_DEBUG_DISPLAY: 0
+      WP_DEBUG_DISPLAY: 1
       WP_TABLE_PREFIX: "wp_"
       LIVE_URL: https://project1.com
       DEV_URL: http://dev.project1.com
