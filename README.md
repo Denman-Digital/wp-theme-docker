@@ -22,12 +22,15 @@ A Docker setup for WordPress theme development.
 
 2. Build & start the docker containers:
     ```sh
+    cd docker
+    # THEN
     docker-compose up
     # OR
     npm start # alias
     ```
 
-3. **(Optional, but recommended)**. Delete the `.git` folder. This is just a starting point for a development environment. You'll probably need or want to tweak it for each project, or even each user. Changes you make are _probably_ going to be project-specific and wont need to be pushed upstream, and changes upstream are likely not necessary to pull down, especially if it's already working for you.
+3. **(Optional, but recommended)**. Delete the `.git` folder.  
+   This is just a starting point for a development environment. You'll probably need or want to tweak it for each project, or even each user. Changes you make are _probably_ going to be project-specific and wont need to be pushed upstream, and changes upstream are likely not necessary to pull down, especially if it's already working for you.
 
 That's it. (_so far_)
 
