@@ -1,17 +1,17 @@
 {
-    "name": "iscbc-docker",
+    "name": "wp-theme-docker",
     "version": "1.0.0",
-    "description": "A Docker setup for ISCBC site development",
+    "description": "A Docker setup for WordPress theme development",
     "scripts": {
         "start": "docker-compose up",
         "teardown": "docker-compose down",
         "rebuild": "docker-compose up --force-recreate --build"
     },
 	"author": "Denman Digital",
-    "license": "UNLICENSED",
+    "license": "MIT",
     "private": true,
     "repository": {
         "type": "git",
-        "url": "https://github.com/Denman-Digital/iscbc-docker"
+        "url": "https://github.com/Denman-Digital/wp-theme-docker"
     }
 }

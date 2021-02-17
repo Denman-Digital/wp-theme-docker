@@ -27,7 +27,7 @@ services:
       - ./app:/var/www/html
       - ./wp-config.php:/var/www/html/wp-config.php
       # * Make sure that the paths here match (a) the actual path to the theme folder and (b) the eventual server path to the theme folder
-      - ../theme:/var/www/html/wp-content/themes/iscbc-theme
+      - ../theme:/var/www/html/wp-content/themes/project1-theme
     depends_on:
       - db
     links:
