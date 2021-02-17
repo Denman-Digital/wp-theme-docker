@@ -7,7 +7,7 @@ A Docker setup for WordPress theme development.
 1. Clone this repo next to the theme folder:
     ```sh
     cd path/to/project
-    git clone <repo> docker # the folder name "docker" is optional
+    git clone https://github.com/Denman-Digital/wp-theme-docker.git docker # the folder name "docker" is optional
     ```
 
     This should give you a folder structure like this:
