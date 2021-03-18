@@ -5,7 +5,8 @@
     "scripts": {
         "start": "docker-compose up",
         "teardown": "docker-compose down",
-        "rebuild": "docker-compose up --force-recreate --build"
+        "rebuild": "docker-compose up --force-recreate --build",
+        "burndown": "echo 'docker-compose down --volumes'"
     },
     "author": "Denman Digital",
     "license": "MIT",

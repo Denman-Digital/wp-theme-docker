@@ -95,10 +95,16 @@ docker-compose up --force-recreate --build
 npm run rebuild # alias
 ```
 
-If you need to tear down everything including the database, do the following first:
+If you need to tear down everything, do the following first:
 
 ```sh
 docker-compose down
 # OR
 npm run teardown # alias
+```
+
+If you need to burn everything down to the ground, **including the database**:
+
+```sh
+docker compose down --volumes
 ```
