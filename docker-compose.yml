@@ -26,6 +26,7 @@ services:
       - ./docker/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./app:/var/www/html
       - ./wp-config.php:/var/www/html/wp-config.php
+      - ./favicon.ico:/var/www/html/favicon.ico
       # * Make sure that the paths here match (a) the actual path to the theme folder and (b) the eventual server path to the theme folder
       - ../theme:/var/www/html/wp-content/themes/project1-theme
     depends_on:
