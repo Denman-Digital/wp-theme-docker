@@ -38,8 +38,8 @@ A Docker setup for WordPress theme development.
 
 That's it. (_so far_)
 
-The dev site will be served at [localhost:8000](localhost:8000).
-A database admin GUI is available at [localhost:8080](localhost:8080).
+The dev site will be served at [localhost:8000](http://localhost:8000).
+A database admin GUI is available at [localhost:8080](http://localhost:8080).
 
 > **NOTE:** If there isn't a folder named `/app` with an existing WordPress install, docker will create one.
 
