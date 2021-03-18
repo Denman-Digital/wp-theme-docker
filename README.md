@@ -2,6 +2,10 @@
 
 A Docker setup for WordPress theme development.
 
+## Requirements
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
 ## Usage
 
 1. Clone this repo next to the theme folder:
