@@ -1,0 +1,14 @@
+{
+    "name": "denman-digital/wp-theme-docker",
+    "description": "Docker development environment for the WordPress websites",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Walton",
+            "email": "paul@denmandigital.com"
+        }
+    ],
+    "homepage": "https://github.com/Denman-Digital/wp-theme-docker#readme",
+    "readme": "./README.md"
+}
