@@ -60,15 +60,29 @@ For example, the wp-sync-db plugin sometimes breaks when `WP_DEBUG` is enabled a
 
 ```sh
 $ docker exec -it --user=dev project_wp_1 bash
-dev@<container id> $ wp config set WP_DEBUG false --raw
+dev@<container id> wp config set WP_DEBUG false --raw
 # later...
-dev@<container id> $ wp config set WP_DEBUG true --raw
+dev@<container id> wp config set WP_DEBUG true --raw
 ```
 
 > **NOTE:** Actually don't use WP-CLI for this *specific* use-case, WP_DEBUG is set on the fly from the `WP_DEBUG` environment variable. Change that from the command line with
 > ```sh
 > dev@<container id> $WP_DEBUG = 0 # for false, 1 for true
 > ```
+> 
+
+### MySQL
+
+In the event you need to fiddle around in the database manually, there isn't a GUI set up (yet?) so you will have to execute SQL from the command line.
+
+Access the database container much like above:
+
+```sh
+$ docker exec -it project_db_1 mysql -p
+Enter password:
+```
+
+The MySQL root user password is set in [docker-compose.yml](https://github.com/Denman-Digital/wp-theme-docker/blob/main/docker-compose.yml) and defaults to `admin`.
 
 ### Rebuilding Containers
 
