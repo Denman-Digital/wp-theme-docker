@@ -7,7 +7,7 @@
         "teardown": "docker-compose down",
         "rebuild": "docker-compose up --force-recreate --build"
     },
-	"author": "Denman Digital",
+    "author": "Denman Digital",
     "license": "MIT",
     "private": true,
     "repository": {

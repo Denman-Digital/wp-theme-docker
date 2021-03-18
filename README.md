@@ -38,6 +38,9 @@ A Docker setup for WordPress theme development.
 
 That's it. (_so far_)
 
+The dev site will be served at [localhost:8000](localhost:8000).
+A database admin GUI is available at [localhost:8080](localhost:8080).
+
 > **NOTE:** If there isn't a folder named `/app` with an existing WordPress install, docker will create one.
 
 <br>
@@ -73,16 +76,14 @@ dev@<container id> wp config set WP_DEBUG true --raw
 
 ### MySQL
 
-In the event you need to fiddle around in the database manually, there isn't a GUI set up (yet?) so you will have to execute SQL from the command line.
-
-Access the database container much like above:
+In the event you need to fiddle around in the database manually, you can use [Adminer](https://www.adminer.org/) by going to [localhost:8080](localhost:8080) or you can execute SQL from the command line by accessing the database container much like above:
 
 ```sh
 $ docker exec -it project_db_1 mysql -p
 Enter password:
 ```
 
-The MySQL root user password is set in [docker-compose.yml](https://github.com/Denman-Digital/wp-theme-docker/blob/main/docker-compose.yml) and defaults to `admin`.
+For either method, the MySQL root user password is set in [docker-compose.yml](https://github.com/Denman-Digital/wp-theme-docker/blob/main/docker-compose.yml) and defaults to `admin`, and the database name is `wordpress`.
 
 ### Rebuilding Containers
 
