@@ -3,10 +3,13 @@
     "version": "1.1.0",
     "description": "A Docker setup for WordPress theme development",
     "scripts": {
-        "start": "docker-compose up",
-        "teardown": "docker-compose down",
-        "rebuild": "docker-compose up --force-recreate --build",
-        "burndown": "echo 'docker-compose down --volumes'"
+        "start": "docker compose up",
+        "teardown": "docker compose down",
+        "rebuild": "docker compose up --force-recreate --build",
+        "burndown": "echo 'docker compose down --volumes'",
+        "wp:bash": "docker exec -it --user=dev $(docker-compose ps -q wp) bash",
+        "db:mysql": "docker exec -it $(docker-compose ps -q db) mysql -p",
+        "db:restore": "bash bin/restore_db.sh"
     },
     "author": "Denman Digital",
     "license": "MIT",
