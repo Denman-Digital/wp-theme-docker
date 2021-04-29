@@ -50,8 +50,8 @@ services:
       WP_DEBUG: 1
       WP_DEBUG_DISPLAY: 1
       WP_TABLE_PREFIX: "wp_"
-      LIVE_URL: https://project1.com
-      DEV_URL: http://dev.project1.com
+      LIVE_URL: "https://project1.com"
+      DEV_URL: "http://dev.project1.com:8000"
     networks:
       - site
 
