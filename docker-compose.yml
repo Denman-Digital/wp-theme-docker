@@ -36,8 +36,10 @@ services:
       - ./app:/var/www/html
       - ./wp-config.php:/var/www/html/wp-config.php
       - ./favicon.ico:/var/www/html/favicon.ico
-      # * Make sure that the paths here match (a) the actual path to the theme folder and (b) the eventual server path to the theme folder
+      - ./data/uploads:/var/www/html/wp-content/uploads
+      # * Make sure that the paths here match (a) the actual path to the relevant folders and (b) the eventual server path to those folders
       - ../theme:/var/www/html/wp-content/themes/project1-theme
+      # - ../app:/var/www/html/wp-content/
     depends_on:
       - db
     links:
@@ -50,8 +52,8 @@ services:
       WP_DEBUG: 1
       WP_DEBUG_DISPLAY: 1
       WP_TABLE_PREFIX: "wp_"
-      LIVE_URL: "https://project1.com"
-      DEV_URL: "http://dev.project1.com:8000"
+      PROD_URL: "https://project1.com"
+      DEV_URL: "http://localhost:8000"
     networks:
       - site
 
