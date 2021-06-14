@@ -1,6 +1,6 @@
 {
     "name": "wp-theme-docker",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "A Docker setup for WordPress theme development",
     "scripts": {
         "start": "docker compose up",
@@ -8,6 +8,7 @@
         "rebuild": "docker compose up --force-recreate --build",
         "burndown": "echo 'docker compose down --volumes'",
         "wp:bash": "docker exec -it --user=dev $(docker-compose ps -q wp) bash",
+        "wp:plugins": "bash bin/plugins.sh",
         "db:mysql": "docker exec -it $(docker-compose ps -q db) mysql -p",
         "db:restore": "bash bin/restore_db.sh"
     },

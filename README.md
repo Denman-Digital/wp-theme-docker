@@ -45,24 +45,76 @@ A database admin GUI is available at [localhost:8080](http://localhost:8080).
 
 <br>
 
+## Scripts
+
+There are 2 bash scripts included to help get a dev environment up and running.
+
+Both scripts require that the containers be up and running when they are called.
+
+### Database Restore (`bin/restore_db.sh`)
+
+```sh
+npm run db:restore $file
+# - OR -
+bash ./bin/restore_db.sh $file
+```
+
+`$file` must be the path to an sql file. Typically this is stored in the `/data` folder:
+
+```sh
+npm run db:restore ./data/export.sql
+```
+
+This script will replace the current db with the contents of a database SQL dump, then search and replace the production URL with a local development URL as defined by the `PROD_URL` and `DEV_URL` environment variables respectively. These variables are set in [docker-compose.yml](https://github.com/Denman-Digital/wp-theme-docker/blob/main/docker-compose.yml) and must be quoted strings.
+
+| Variable   | Default Value             |
+| ---------- | ------------------------- |
+| `PROD_URL` | `"https://project1.com"`  |
+| `DEV_URL`  | `"http://localhost:8000"` |
+
+> **NOTE:** if you want to set up a different local url, update this to match.
+
+### Plugins (`bin/plugins.sh`)
+
+```sh
+npm run wp:plugins
+# - OR -
+bash ./bin/plugins.sh
+```
+
+This script will uninstall Hello Dolly, deactivate any production specific plugins (as defined in by the `PROD_PLUGINS` environment variable), and install and activate any development specific plugins (as defined in by the `DEV_PLUGINS` environment variable). These variables are set in [docker-compose.yml](https://github.com/Denman-Digital/wp-theme-docker/blob/main/docker-compose.yml) and should be quoted strings with space-separated plugin IDs.
+
+| Variable       | Default Value                                                  |
+| -------------- | -------------------------------------------------------------- |
+| `PROD_PLUGINS` | `"better-wp-security"`                                         |
+| `DEV_PLUGINS`  | `"debug-bar debug-bar-actions-and-filters-addon health-check"` |
+
+<br>
+
 ## Commands
 
 The following are some helpful commands for working with the Docker containers. Your docker containers may have different names, in which case you can use the `docker ps` command to see any currently running docker containers.
 
 ### WP-CLI
 
-The WordPress Command Line Interface is installed on the Apache container. To access it, you can use the following command (assuming `project_wp_1` as the container name, change that in the [.env](https://github.com/Denman-Digital/wp-theme-docker/blob/main/.env) file):
+The WordPress Command Line Interface is installed on the Apache container. To access it, you can use the following script:
 
 ```sh
-docker exec -it --user=dev project_wp_1 bash
+npm run db:bash
 ```
+
+> **NOTE:** This is just an alias for this command
+> ```sh
+> docker exec -it --user=dev project_wp_1 bash
+> ```
+> Where `project_wp_1` is the container name, as generated from the `COMPOSE_PROJECT_NAME` variable in the [.env](https://github.com/Denman-Digital/wp-theme-docker/blob/main/.env) file.
 
 This starts an interactive bash session in the container as the "dev" user, which will stop WP-CLI from chastising you for running it as the root user.
 
 For example, the wp-sync-db plugin sometimes breaks when `WP_DEBUG` is enabled and &mdash; as this is a development environment &mdash; `WP_DEBUG` is enabled by default. Either you can stop the servers and change the settings in `docker-compose.yml`, or just disable it from the command line:
 
 ```sh
-$ docker exec -it --user=dev project_wp_1 bash
+$ npm run wp:bash
 dev@<container id> wp config set WP_DEBUG false --raw
 # later...
 dev@<container id> wp config set WP_DEBUG true --raw
@@ -81,6 +133,12 @@ In the event you need to fiddle around in the database manually, you can use [Ad
 ```sh
 $ docker exec -it project_db_1 mysql -p
 Enter password:
+```
+
+This has also been aliased to:
+
+```sh
+$ npm run db:mysql
 ```
 
 For either method, the MySQL root user password is set in [docker-compose.yml](https://github.com/Denman-Digital/wp-theme-docker/blob/main/docker-compose.yml) and defaults to `admin`, and the database name is `wordpress`.

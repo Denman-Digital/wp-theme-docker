@@ -54,6 +54,8 @@ services:
       WP_TABLE_PREFIX: "wp_"
       PROD_URL: "https://project1.com"
       DEV_URL: "http://localhost:8000"
+      PROD_PLUGINS: "better-wp-security"
+      DEV_PLUGINS: "debug-bar debug-bar-actions-and-filters-addon health-check"
     networks:
       - site
 
