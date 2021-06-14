@@ -82,6 +82,8 @@ define('WP_DEBUG', (bool) ($_ENV['WP_DEBUG'] ?? false));
 define('WP_DEBUG_LOG', (bool) ($_ENV['WP_DEBUG_LOG'] ?? $_ENV['WP_DEBUG'] ?? false));
 define('WP_DEBUG_DISPLAY', (bool) ($_ENV['WP_DEBUG_DISPLAY'] ?? $_ENV['WP_DEBUG_LOG'] ?? $_ENV['WP_DEBUG'] ?? false));
 
+define('FORCE_SSL', false);
+define('FORCE_SSL_LOGIN', false);
 define('FORCE_SSL_ADMIN', false);
 
 /* That's all, stop editing! Happy publishing. */
