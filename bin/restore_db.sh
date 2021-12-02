@@ -20,7 +20,7 @@ docker exec -i $(docker-compose ps -q db) sh -c "$cmd" < $file
 cmd='
 JSON_PROD_URL=$(php -r "echo json_encode(getenv(\"PROD_URL\"));")
 JSON_DEV_URL=$(php -r "echo json_encode(getenv(\"DEV_URL\"));")
-wp --allow-root --skip-themes --skip-plugins search-replace "$PROD_URL" "$DEV_URL" --skip-columns=guid
-wp --allow-root --skip-themes --skip-plugins search-replace "$JSON_PROD_URL" "$JSON_DEV_URL" --skip-columns=guid
+wp --allow-root --skip-plugins search-replace "$PROD_URL" "$DEV_URL" --skip-columns=guid
+wp --allow-root --skip-plugins search-replace "$JSON_PROD_URL" "$JSON_DEV_URL" --skip-columns=guid
 '
 docker-compose exec wp sh -c "$cmd"
