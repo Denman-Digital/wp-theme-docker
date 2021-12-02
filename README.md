@@ -86,7 +86,7 @@ This script will uninstall Hello Dolly, deactivate any production specific plugi
 
 | Variable       | Default Value                                                  |
 | -------------- | -------------------------------------------------------------- |
-| `PROD_PLUGINS` | `"better-wp-security"`                                         |
+| `PROD_PLUGINS` | `"better-wp-security really-simple-ssl breeze"`                                         |
 | `DEV_PLUGINS`  | `"debug-bar debug-bar-actions-and-filters-addon health-check"` |
 
 <br>
