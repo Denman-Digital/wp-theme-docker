@@ -28,7 +28,7 @@ A Docker setup for WordPress theme development.
     ```sh
     cd docker
     # THEN
-    docker-compose up
+    docker compose up
     # OR
     npm start # alias
     ```
@@ -148,7 +148,7 @@ For either method, the MySQL root user password is set in [docker-compose.yml](h
 You may find you need to rebuild your containers if things go pear-shaped:
 
 ```sh
-docker-compose up --force-recreate --build
+docker compose up --force-recreate --build
 # OR
 npm run rebuild # alias
 ```
@@ -156,7 +156,7 @@ npm run rebuild # alias
 If you need to tear down everything, do the following first:
 
 ```sh
-docker-compose down
+docker compose down
 # OR
 npm run teardown # alias
 ```
