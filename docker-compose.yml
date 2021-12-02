@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: mysql:5.7
+    image: mariadb:10.4
     ports:
       - 8306:3306
     command: [
@@ -11,7 +11,8 @@ services:
         '--collation-server=utf8mb4_unicode_ci'
     ]
     volumes:
-      - db_data:/var/lib/mysql
+      - 'db_data:/var/lib/mysql'
+      - 'db_backup:/backup'
     environment:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: admin
@@ -53,14 +54,15 @@ services:
       WP_DEBUG_DISPLAY: 1
       WP_TABLE_PREFIX: "wp_"
       PROD_URL: "https://project1.com"
-      DEV_URL: "http://localhost:8000"
-      PROD_PLUGINS: "better-wp-security"
+      DEV_URL: "http://dev.project1.com:8000"
+      PROD_PLUGINS: "better-wp-security really-simple-ssl breeze"
       DEV_PLUGINS: "debug-bar debug-bar-actions-and-filters-addon health-check"
     networks:
       - site
 
 volumes:
   db_data: # store database into a volume so that we can pause the containers
+  db_backup:
 
 networks:
   site:
