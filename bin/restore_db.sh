@@ -12,7 +12,7 @@ if [ ! -f "$file" ]; then
 fi
 
 # Restore database to db container
-cmd='exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"'
+cmd='exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" -v -v -v -T'
 docker exec -i $(docker-compose ps -q db) sh -c "$cmd" < $file
 
 # Replace PROD_URL using WP-CLI in wp container
@@ -20,7 +20,9 @@ docker exec -i $(docker-compose ps -q db) sh -c "$cmd" < $file
 cmd='
 JSON_PROD_URL=$(php -r "echo json_encode(getenv(\"PROD_URL\"));")
 JSON_DEV_URL=$(php -r "echo json_encode(getenv(\"DEV_URL\"));")
-wp --allow-root --skip-plugins search-replace "$PROD_URL" "$DEV_URL" --skip-columns=guid
-wp --allow-root --skip-plugins search-replace "$JSON_PROD_URL" "$JSON_DEV_URL" --skip-columns=guid
+echo "\n$PROD_URL -> $DEV_URL\n"
+wp --allow-root search-replace "$PROD_URL" "$DEV_URL" --skip-columns=guid
+echo "\n$JSON_PROD_URL -> $JSON_DEV_URL\n"
+wp --allow-root search-replace "$JSON_PROD_URL" "$JSON_DEV_URL" --skip-columns=guid
 '
 docker-compose exec wp sh -c "$cmd"
