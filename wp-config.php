@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The base configuration for WordPress
  *
@@ -18,26 +17,19 @@
  *
  * @package WordPress
  */
-
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', $_ENV['DB_NAME'] ?? 'wordpress');
-
 /** MySQL database username */
 define('DB_USER', $_ENV['DB_USER'] ?? 'username_here');
-
 /** MySQL database password */
 define('DB_PASSWORD', $_ENV['DB_PASSWORD'] ?? 'password_here');
-
 /** MySQL hostname */
 define('DB_HOST', $_ENV['DB_HOST'] ?? 'localhost');
-
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
-
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
-
 /**#@+
  * Authentication Unique Keys and Salts.
  *
@@ -55,9 +47,7 @@ define('AUTH_SALT',        'put your unique phrase here');
 define('SECURE_AUTH_SALT', 'put your unique phrase here');
 define('LOGGED_IN_SALT',   'put your unique phrase here');
 define('NONCE_SALT',       'put your unique phrase here');
-
 /**#@-*/
-
 /**
  * WordPress Database Table prefix.
  *
@@ -65,7 +55,6 @@ define('NONCE_SALT',       'put your unique phrase here');
  * a unique prefix. Only numbers, letters, and underscores please!
  */
 $table_prefix = (string) ($_ENV["WP_TABLE_PREFIX"] ?? 'wp_');
-
 /**
  * For developers: WordPress debugging mode.
  *
@@ -81,17 +70,19 @@ $table_prefix = (string) ($_ENV["WP_TABLE_PREFIX"] ?? 'wp_');
 define('WP_DEBUG', (bool) ($_ENV['WP_DEBUG'] ?? false));
 define('WP_DEBUG_LOG', (bool) ($_ENV['WP_DEBUG_LOG'] ?? $_ENV['WP_DEBUG'] ?? false));
 define('WP_DEBUG_DISPLAY', (bool) ($_ENV['WP_DEBUG_DISPLAY'] ?? $_ENV['WP_DEBUG_LOG'] ?? $_ENV['WP_DEBUG'] ?? false));
-
 define('FORCE_SSL', false);
 define('FORCE_SSL_LOGIN', false);
 define('FORCE_SSL_ADMIN', false);
 
-/* That's all, stop editing! Happy publishing. */
+define("__DD_PROD_URL", getenv("PROD_URL"));
+define("__DD_PROD_URL_JSON", json_encode(__DD_PROD_URL));
+define("__DD_DEV_URL", getenv("DEV_URL"));
+define("__DD_DEV_URL_JSON", json_encode(__DD_DEV_URL));
 
+/* That's all, stop editing! Happy publishing. */
 /** Absolute path to the WordPress directory. */
 if (!defined('ABSPATH')) {
 	define('ABSPATH', __DIR__ . '/');
 }
-
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';

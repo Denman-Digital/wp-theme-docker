@@ -5,14 +5,15 @@ services:
     image: mariadb:10.4
     ports:
       - 8306:3306
-    command: [
-        '--default_authentication_plugin=mysql_native_password',
-        '--character-set-server=utf8mb4',
-        '--collation-server=utf8mb4_unicode_ci'
-    ]
+    command:
+      [
+        "--default_authentication_plugin=mysql_native_password",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+      ]
     volumes:
-      - 'db_data:/var/lib/mysql'
-      - 'db_backup:/backup'
+      - "db_data:/var/lib/mysql"
+      - "db_backup:/backup"
     environment:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: admin
@@ -51,6 +52,7 @@ services:
       DB_PASSWORD: admin
       DB_HOST: db
       WP_DEBUG: 1
+      WP_DEBUG_LOG: 1
       WP_DEBUG_DISPLAY: 1
       WP_TABLE_PREFIX: "wp_"
       PROD_URL: "https://project1.com"
