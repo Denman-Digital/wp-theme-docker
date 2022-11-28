@@ -9,8 +9,11 @@
         "burndown": "echo 'docker compose down --volumes'",
         "wp:bash": "docker exec -it --user=dev $(docker-compose ps -q wp) bash",
         "wp:plugins": "bash bin/plugins.sh",
+        "wp:no-ssl": "bash bin/no-ssl.sh",
+        "wp:logs": "tail -f ./app/wp-content/debug.log",
         "db:mysql": "docker exec -it $(docker-compose ps -q db) mysql -p",
-        "db:restore": "bash bin/restore_db.sh"
+        "db:restore": "bash bin/restore_db.sh",
+        "db:devify": "bash bin/devify.sh"
     },
     "author": "Denman Digital",
     "license": "MIT",
