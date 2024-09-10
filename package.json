@@ -7,7 +7,7 @@
         "teardown": "docker compose down",
         "rebuild": "docker compose up --force-recreate --build",
         "burndown": "echo 'docker compose down --volumes'",
-        "wp:bash": "docker exec -it --user=dev $(docker-compose ps -q wp) bash",
+        "wp:bash": "docker exec -it --user=dev $(docker compose ps -q wp) bash",
         "wp:plugins": "bash bin/plugins.sh",
         "wp:no-ssl": "bash bin/no-ssl.sh",
         "wp:logs": "tail -f ./app/wp-content/debug.log",
