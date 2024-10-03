@@ -10,4 +10,4 @@ wp --allow-root search-replace "$PROD_URL" "$DEV_URL" --skip-columns=guid
 echo "\n$JSON_PROD_URL -> $JSON_DEV_URL\n"
 wp --allow-root search-replace "$JSON_PROD_URL" "$JSON_DEV_URL" --skip-columns=guid
 '
-docker-compose exec wp sh -c "$cmd"
+docker compose exec wp sh -c "$cmd"

@@ -13,7 +13,7 @@ fi
 
 # Restore database to db container
 cmd='exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" -v -v -v -T'
-docker exec -i $(docker-compose ps -q db) sh -c "$cmd" < $file
+docker exec -i $(docker ps -q -f name=-db) sh -c "$cmd" < $file
 
 # Replace PROD_URL using WP-CLI in wp container
 # * Also replace JSON encoded URLs such as in Gutenberg comments
@@ -25,4 +25,4 @@ wp --allow-root search-replace "$PROD_URL" "$DEV_URL" --skip-columns=guid
 echo "\n$JSON_PROD_URL -> $JSON_DEV_URL\n"
 wp --allow-root search-replace "$JSON_PROD_URL" "$JSON_DEV_URL" --skip-columns=guid
 '
-docker-compose exec wp sh -c "$cmd"
+docker compose exec wp sh -c "$cmd"

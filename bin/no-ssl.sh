@@ -11,4 +11,4 @@ wp --allow-root config set FORCE_SSL false --raw
 wp --allow-root config set FORCE_SSL_LOGIN false --raw
 wp --allow-root config set FORCE_SSL_ADMIN false --raw
 '
-docker-compose exec wp sh -c "$cmd"
+docker compose exec wp sh -c "$cmd"

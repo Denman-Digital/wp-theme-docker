@@ -9,4 +9,4 @@ wp --allow-root --skip-themes plugin uninstall hello-dolly
 [ ! -z "$DEV_PLUGINS"] && wp --allow-root --skip-themes plugin install $DEV_PLUGINS --activate
 [ ! -z "$PROD_PLUGINS" ] && wp --allow-root --skip-themes plugin deactivate $PROD_PLUGINS
 '
-docker-compose exec wp sh -c "$cmd"
+docker compose exec wp sh -c "$cmd"
