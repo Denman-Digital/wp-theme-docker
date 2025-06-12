@@ -4,8 +4,10 @@
     "description": "A Docker setup for WordPress theme development",
     "scripts": {
         "start": "docker compose up",
+        "start:dev": "docker compose --file docker-compose-dev.yml --project-name wpthemedev up",
         "teardown": "docker compose down",
         "rebuild": "docker compose up --force-recreate --build",
+        "rebuild:dev": "docker compose --file docker-compose-dev.yml --project-name wpthemedev up --force-recreate --build",
         "burndown": "echo 'docker compose down --volumes'",
         "wp:bash": "docker exec -it --user=dev $(docker ps -q -f name=-wp) bash",
         "wp:plugins": "bash bin/plugins.sh",
