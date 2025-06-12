@@ -1,6 +1,6 @@
 {
     "name": "wp-theme-docker",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "A Docker setup for WordPress theme development",
     "scripts": {
         "start": "docker compose up",

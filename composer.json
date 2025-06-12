@@ -1,7 +1,7 @@
 {
     "name": "denman-digital/wp-theme-docker",
     "description": "Docker development environment for the WordPress websites",
-    "version": "1.1.1",
+    "version": "1.2.2",
     "type": "project",
     "license": "MIT",
     "authors": [
