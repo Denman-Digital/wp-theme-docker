@@ -1,4 +1,4 @@
-# WP Theme Docker
+# WP Theme Docker 🐳
 
 A Docker setup for WordPress theme development.
 
@@ -8,7 +8,7 @@ A Docker setup for WordPress theme development.
 
 ## Usage
 
-1. Clone this repo next to the theme folder:
+1. Clone this repo next to the theme/project folder:
     ```sh
     cd path/to/project
     git clone https://github.com/Denman-Digital/wp-theme-docker.git docker # the folder name "docker" is optional
@@ -24,7 +24,45 @@ A Docker setup for WordPress theme development.
 
     Make sure that your theme folder is either named `theme`, or you update the volumes in the [docker-compose file.](https://github.com/Denman-Digital/wp-theme-docker/blob/main/docker-compose.yml#L30). You'll also want to make sure that the path that it is being mapped to matches the eventual server path for the theme.
 
-2. Build & start the docker containers:
+    Typically, since we version control the plugins too, the folder structure actually usually looks like:
+
+    ```sh
+    project/
+    └─┬ docker-project/
+      └ app-project/
+        └─┬ themes/project-theme/
+          ├ plugins/
+          └ mu-plugins/
+
+    ```
+
+    with the following volumes set up:
+
+    ```yml
+    wp:
+      volumes:
+        - ../app-project/themes:/var/www/html/wp-content/themes
+        - ../app-project/plugins:/var/www/html/wp-content/plugins
+        - ../app-project/mu-plugins:/var/www/html/wp-content/mu-plugins
+    ```
+
+2. Set up local and prod URLs in `docker-compose.yml` (Optional)
+    ```yml
+    services:
+      wp:
+        environment:
+          PROD_URL: "https://project.ca"
+          DEV_URL: "http://localhost:8000"
+    ```
+
+    This is only required to enable the use of the some of the included scripts, for importing the database (`npm run db:restore`), replacing stored production/staging URLs (`npm run db:devify`), and doing our darnedest to turn off local SSL (`npm run wp:no-ssl`)
+
+3. Set up compose project name in `.env` (Optional)
+   ```ini
+   COMPOSE_PROJECT_NAME=project
+   ```
+
+4. Build & start the docker containers:
     ```sh
     cd docker
     # THEN
@@ -33,7 +71,7 @@ A Docker setup for WordPress theme development.
     npm start # alias
     ```
 
-3. **(Optional, but recommended)**. Delete the `.git` folder.  
+5. **(Optional, but recommended)**. Delete the `.git` folder.  
    This is just a starting point for a development environment. You'll probably need or want to tweak it for each project, or even each user. Changes you make are _probably_ going to be project-specific and wont need to be pushed upstream, and changes upstream are likely not necessary to pull down, especially if it's already working for you.
 
 That's it. (_so far_)
@@ -47,9 +85,9 @@ A database admin GUI is available at [localhost:8080](http://localhost:8080).
 
 ## Scripts
 
-There are 2 bash scripts included to help get a dev environment up and running.
+There are 4 bash scripts included to help get a dev environment up and running.
 
-Both scripts require that the containers be up and running when they are called.
+All scripts require that the containers be up and running when they are called.
 
 ### Database Restore (`bin/restore_db.sh`)
 
@@ -88,6 +126,29 @@ This script will uninstall Hello Dolly, deactivate any production specific plugi
 | -------------- | -------------------------------------------------------------- |
 | `PROD_PLUGINS` | `"better-wp-security really-simple-ssl breeze"`                                         |
 | `DEV_PLUGINS`  | `"debug-bar debug-bar-actions-and-filters-addon health-check"` |
+
+
+### No SSL (`bin/no-ssl.sh`)
+
+```sh
+npm run wp:no-ssl
+# - OR -
+bash ./bin/no-ssl.sh
+```
+
+This script does its best to turn off SSL when developing locally, as it is a huge pain to set up in a local environment, and generally not worth it.
+
+It runs a search/replace for any `https://` URLs in the database, turns off the Really Simple Security plugin (formerly Really Simple SSL), and sets a number of `FORCE_SSL` flags in `wp-config.php`
+
+### Devify (`bin/devify.sh`)
+
+```sh
+npm run db:devify
+# - OR -
+bash ./bin/devify.sh
+```
+
+This script runs the last part of the DB Restore script, a search/replace replacing instances of the `PROD_URL` with the `DEV_URL` as set in the `docker-compose.yml`.
 
 <br>
 
@@ -166,3 +227,5 @@ If you need to burn everything down to the ground, **including the database**:
 ```sh
 docker compose down --volumes
 ```
+
+You can get a reminder of this command by running `npm run burndown`
